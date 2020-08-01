@@ -2481,10 +2481,34 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     remove: function remove(index, id) {
-      var uri = "/api/permintaan/".concat(id);
-      this.daftarPermintaan.splice(index, 1);
-      this.axios["delete"](uri).then(function (response) {
-        console.log(response.data);
+      var _this2 = this;
+
+      this.$swal.fire({
+        title: 'Apakah kamu yakin?',
+        text: "Jika kamu hapus, maka data tidak akan kembali lagi.",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Hapus',
+        cancelButtonText: 'Batal'
+      }).then(function (result) {
+        if (result.value) {
+          _this2.$swal.fire({
+            title: 'Success!',
+            text: 'Article deleted successfully',
+            icon: 'success',
+            timer: 1000
+          });
+
+          var uri = "/api/permintaan/".concat(id);
+
+          _this2.daftarPermintaan.splice(index, 1);
+
+          _this2.axios["delete"](uri).then(function (response) {
+            console.log(response.data);
+          });
+        }
       });
     }
   }

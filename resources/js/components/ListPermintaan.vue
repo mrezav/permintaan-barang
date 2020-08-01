@@ -48,11 +48,31 @@
         },
         methods : {
             remove:function(index, id){
-                let uri = `/api/permintaan/${id}`;
-                this.daftarPermintaan.splice(index,1);
-                this.axios.delete(uri).then(response => {
-                    console.log(response.data);
-                });
+                this.$swal.fire({
+                    title: 'Apakah kamu yakin?',
+                    text: "Jika kamu hapus, maka data tidak akan kembali lagi.",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Hapus',
+                    cancelButtonText: 'Batal'
+                    }).then((result) => {
+                    if (result.value) {
+                        this.$swal.fire({
+                            title: 'Success!',
+                            text: 'Article deleted successfully',
+                            icon: 'success',
+                            timer: 1000
+                        });
+                        let uri = `/api/permintaan/${id}`;
+                        this.daftarPermintaan.splice(index,1);
+                        this.axios.delete(uri).then(response => {
+                            console.log(response.data);
+                        });
+                    }
+                })
+
             }
         }
     }
