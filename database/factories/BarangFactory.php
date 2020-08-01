@@ -11,6 +11,7 @@ $factory->define(Barang::class, function (Faker $faker) {
         'nama'      => 'Brg-'.$faker->unique()->word,
         'stok'      => $faker->randomDigitNotNull,
         'status'    => $faker->randomElement(array(true, false)),
+        'satuan'    => $faker->randomElement(array('Pak', 'Lusin','Dus')),
         'kode_lokasi' => App\Lokasi::pluck('kode')->random()
     ];
 });

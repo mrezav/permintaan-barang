@@ -19,6 +19,7 @@ class CreateBarangTable extends Migration
             $table->string('nama');
             $table->integer('stok');
             $table->boolean('status');
+            $table->string('satuan');
             $table->string('kode_lokasi');
             $table->foreign('kode_lokasi')->references('kode')->on('lokasi');
             $table->timestamps();

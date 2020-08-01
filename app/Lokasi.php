@@ -11,6 +11,6 @@ class Lokasi extends Model
 
     public function barang()
     {
-        return $this->hasMany('App\Barang');
+        return $this->hasMany('App\Barang','kode_lokasi','kode');
     }
 }
